@@ -1,0 +1,11 @@
+{
+  "name": "web-server-iot",
+  "version": "1.0.0",
+  "description": "Server que irá obter dados do Arduino e enviar para uma dashboard",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
