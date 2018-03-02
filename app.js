@@ -1,26 +1,29 @@
 
-  var dweetClient = require('node-dweetio');
-  var dweetio = new dweetClient();
-  var five = require('johnny-five');
-  var board = new five.Board();
+const dweetClient = require('node-dweetio')
+const five = require('johnny-five')
+const board = new five.Board()
+const dweetio = new dweetClient()
 
-  board.on('ready', function () {
+board.on('ready', () => {
+  const dweetThing = 'web-client-iot-case'
 
-    var tempSensor = new five.Sensor({
-      pin: "A0",
-      threshold: 4
-    });
-		
-    tempSensor.on("change", function(value) {
-      var params = {
-        temperatura: value
-      };
-      dweetio.dweet_for("web-client-iot-cs", params, function(err, dweet){
-        console.log(dweet.content); 
-      });
-    });
-    
-  });
+  const temperatureSensor = new five.Sensor({
+    pin: 'A0',
+    threshold: 4
+  })
 
+  temperatureSensor.on('change', (value) => {
+    const tweetMessage = {
+      temperature: value
+    }
 
+    dweetio.dweet_for(dweetThing, tweetMessage, (err, dweet) => {
 
+      if(err) {
+        console.log('An error has ocurred: ', err)
+      }
+
+      console.log(dweet.content)
+    })
+  })
+})

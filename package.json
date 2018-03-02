@@ -1,12 +1,12 @@
 {
   "name": "web-server-iot",
   "version": "1.0.0",
-  "description": "Server que irá obter dados do Arduino e enviar para uma dashboard",
+  "description": "Application responsible for receiving Arduino's data",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
-  "author": "",
+  "author": "<otavioensa@gmail.com> Otavio Augusto",
   "license": "ISC",
   "dependencies": {
     "johnny-five": "^0.9.50",
