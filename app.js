@@ -5,7 +5,6 @@ const board = new five.Board()
 const dweetio = new dweetClient()
 
 board.on('ready', () => {
-  const dweetThing = 'web-client-iot-case'
 
   const temperatureSensor = new five.Sensor({
     pin: 'A0',
@@ -13,6 +12,7 @@ board.on('ready', () => {
   })
 
   temperatureSensor.on('change', (value) => {
+    const dweetThing = 'web-client-iot-case'
     const tweetMessage = {
       temperature: value
     }
