@@ -5,25 +5,23 @@ const board = new five.Board()
 const dweetio = new dweetClient()
 
 board.on('ready', () => {
+  const firstLedPort = 13
+  const secondLedPort = 12
 
-  const temperatureSensor = new five.Sensor({
-    pin: 'A0',
-    threshold: 4
-  })
+  const firstLed = new five.Led(firstLedPort)
+  const secondLed = new five.Led(secondLedPort)
 
-  temperatureSensor.on('change', (value) => {
-    const dweetThing = 'web-client-iot-case'
-    const tweetMessage = {
-      temperature: value
+  const dweetThing = 'web-client-iot-case'
+
+  dweetio.listen_for(dweetThing, (dweet) => {
+    if(dweet.content.on) {
+       firstLed.on()
+       secondLed.on()
+       return
     }
 
-    dweetio.dweet_for(dweetThing, tweetMessage, (err, dweet) => {
-
-      if(err) {
-        console.log('An error has ocurred: ', err)
-      }
-
-      console.log(dweet.content)
-    })
+     firstLed.off()
+     secondLed.off()
   })
+
 })
